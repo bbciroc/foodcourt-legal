@@ -24,9 +24,8 @@ Thanks for using FoodCourt! If you need help or have questions, here's how to re
 4. New dishes may require approval before appearing
 
 ### How do I find friends?
-1. Go to your **Profile** tab
-2. Tap **"Add Friends"**
-3. Search by username or find contacts already on FoodCourt
+1. Tap **"Add Judges"** in the header
+2. Search by username or find contacts already on FoodCourt
 
 ### How do I change my verdict visibility?
 When rating a dish, you can choose:
@@ -35,7 +34,10 @@ When rating a dish, you can choose:
 - **Private** - Only you can see
 
 ### How do I delete my account?
-Email us at [foodcourt.app.help@gmail.com](mailto:foodcourt.app.help@gmail.com) with your username, and we'll process your deletion request within 30 days.
+1. Go to your **Profile** tab
+2. Tap the **gear icon** (Settings)
+3. Tap **Data & Privacy**
+4. Tap **Delete Account**
 
 ## Report a Bug
 

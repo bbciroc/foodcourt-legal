@@ -70,7 +70,7 @@ You control who sees each verdict:
 - **Private**: Visible only to you
 
 ### Account Deletion
-You may request deletion of your account and all associated data by emailing us at the address below. We will process deletion requests within 30 days.
+You can delete your account and all associated data directly in the app: **Profile → Settings (gear icon) → Data & Privacy → Delete Account**.
 
 ## Children's Privacy
 
