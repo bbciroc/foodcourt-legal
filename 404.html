@@ -207,6 +207,30 @@
         const match = path.match(/\/foodcourt-legal\/u\/([^\/]+)/);
         const username = match ? match[1] : null;
         const appStoreUrl = 'https://apps.apple.com/app/id6757319532';
+        let appOpened = false;
+
+        // Cancel App Store redirect if page becomes hidden (app opened)
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                appOpened = true;
+            }
+        });
+
+        window.addEventListener('pagehide', function() {
+            appOpened = true;
+        });
+
+        function tryOpenApp(deepLink) {
+            appOpened = false;
+
+            setTimeout(function() {
+                if (!appOpened) {
+                    window.location.href = appStoreUrl;
+                }
+            }, 1500);
+
+            window.location.href = deepLink;
+        }
 
         if (username) {
             // Show profile content
@@ -224,29 +248,14 @@
 
             // On iOS: try to open app, fallback to App Store after delay
             if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                const now = Date.now();
-                setTimeout(function() {
-                    if (Date.now() - now < 2000) {
-                        window.location.href = appStoreUrl;
-                    }
-                }, 1500);
-
-                window.location.href = deepLink;
+                tryOpenApp(deepLink);
             }
 
             // Handle button click with same logic
             button.addEventListener('click', function(e) {
                 if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
                     e.preventDefault();
-                    const now = Date.now();
-
-                    setTimeout(function() {
-                        if (Date.now() - now < 2000) {
-                            window.location.href = appStoreUrl;
-                        }
-                    }, 1500);
-
-                    window.location.href = deepLink;
+                    tryOpenApp(deepLink);
                 }
             });
         } else {
