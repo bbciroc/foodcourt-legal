@@ -1,0 +1,16 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["29Y6PTQMD7.com.andylussier.foodcourt"],
+        "components": [
+          {
+            "/": "/u/*",
+            "comment": "User profile pages"
+          }
+        ]
+      }
+    ]
+  }
+}

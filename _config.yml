@@ -1,3 +1,7 @@
 title: FoodCourt
 description: Legal and support information for FoodCourt
 theme: jekyll-theme-minimal
+
+# Include .well-known directory for Universal Links
+include:
+  - .well-known
