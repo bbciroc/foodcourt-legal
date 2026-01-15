@@ -179,6 +179,7 @@
         const path = window.location.pathname;
         const match = path.match(/\/u\/([^\/]+)/);
         const username = match ? match[1] : null;
+        const appStoreUrl = 'https://apps.apple.com/app/id6740245825';
 
         if (username) {
             // Update display
@@ -190,11 +191,39 @@
             const button = document.getElementById('open-button');
             button.href = deepLink;
 
-            // Try to open app automatically on mobile
+            // On iOS: try to open app, fallback to App Store after delay
             if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                // Set up fallback to App Store
+                const now = Date.now();
+                setTimeout(function() {
+                    // If we're still here after 1.5s, app probably isn't installed
+                    // Check that we haven't been gone for too long (app opened successfully)
+                    if (Date.now() - now < 2000) {
+                        window.location.href = appStoreUrl;
+                    }
+                }, 1500);
+
+                // Try to open the app
                 window.location.href = deepLink;
             }
         }
+
+        // Handle button click with same logic
+        document.getElementById('open-button').addEventListener('click', function(e) {
+            if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                e.preventDefault();
+                const deepLink = this.href;
+                const now = Date.now();
+
+                setTimeout(function() {
+                    if (Date.now() - now < 2000) {
+                        window.location.href = appStoreUrl;
+                    }
+                }, 1500);
+
+                window.location.href = deepLink;
+            }
+        });
     </script>
 </body>
 </html>
