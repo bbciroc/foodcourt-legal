@@ -206,31 +206,6 @@
         const path = window.location.pathname;
         const match = path.match(/\/foodcourt-legal\/u\/([^\/]+)/);
         const username = match ? match[1] : null;
-        const appStoreUrl = 'https://apps.apple.com/app/id6757319532';
-        let appOpened = false;
-
-        // Cancel App Store redirect if page becomes hidden (app opened)
-        document.addEventListener('visibilitychange', function() {
-            if (document.hidden) {
-                appOpened = true;
-            }
-        });
-
-        window.addEventListener('pagehide', function() {
-            appOpened = true;
-        });
-
-        function tryOpenApp(deepLink) {
-            appOpened = false;
-
-            setTimeout(function() {
-                if (!appOpened) {
-                    window.location.href = appStoreUrl;
-                }
-            }, 1500);
-
-            window.location.href = deepLink;
-        }
 
         if (username) {
             // Show profile content
@@ -243,21 +218,7 @@
 
             // Update open button link
             const deepLink = 'foodcourt://u/' + username;
-            const button = document.getElementById('open-button');
-            button.href = deepLink;
-
-            // On iOS: try to open app, fallback to App Store after delay
-            if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                tryOpenApp(deepLink);
-            }
-
-            // Handle button click with same logic
-            button.addEventListener('click', function(e) {
-                if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                    e.preventDefault();
-                    tryOpenApp(deepLink);
-                }
-            });
+            document.getElementById('open-button').href = deepLink;
         } else {
             // Show 404 content
             document.getElementById('profile-content').style.display = 'none';
